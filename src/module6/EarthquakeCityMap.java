@@ -48,8 +48,11 @@ public class EarthquakeCityMap extends PApplet {
 	private String earthquakesURL = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.atom";
 	
 	// The files containing city names and info and country names and info
-	private String cityFile = "/Users/lulu/Documents/Courses/Java Specification/UCSDUnfoldingMaps/data/city-data.json";
-	private String countryFile = "/Users/lulu/Documents/Courses/Java Specification/UCSDUnfoldingMaps/data/countries.geo.json";
+	private String cityFile = "city-data.json";
+	private String countryFile = "countries.geo.json";
+	//private String airportFile = "airports.dat";
+	//private String routesFile = "routes.dat";
+
 	
 	// The map
 	private UnfoldingMap map;
@@ -58,9 +61,9 @@ public class EarthquakeCityMap extends PApplet {
 	private List<Marker> cityMarkers;
 	// Markers for each earthquake
 	private List<Marker> quakeMarkers;
-
 	// A List of country markers
 	private List<Marker> countryMarkers;
+
 	
 	// NEW IN MODULE 5
 	private CommonMarker lastSelected;
@@ -86,13 +89,14 @@ public class EarthquakeCityMap extends PApplet {
 		//earthquakesURL = "test2.atom";
 		
 		// Uncomment this line to take the quiz
-		earthquakesURL = "/Users/lulu/Documents/Courses/Java Specification/UCSDUnfoldingMaps/data/quiz2.atom";
+		// earthquakesURL = "quiz2.atom";
 		
 		
 		// (2) Reading in earthquake data and geometric properties
 	    //     STEP 1: load country features and markers
 		List<Feature> countries = GeoJSONReader.loadData(this, countryFile);
 		countryMarkers = MapUtils.createSimpleMarkers(countries);
+
 		
 		//     STEP 2: read in city data
 		List<Feature> cities = GeoJSONReader.loadData(this, cityFile);
@@ -117,13 +121,14 @@ public class EarthquakeCityMap extends PApplet {
 	    }
 
 	    // could be used for debugging
-	    printQuakes();
+	   // printQuakes(); commented out
 	 		
 	    // (3) Add markers to map
 	    //     NOTE: Country markers are not added to the map.  They are used
 	    //           for their geometric properties
 	    map.addMarkers(quakeMarkers);
 	    map.addMarkers(cityMarkers);
+
 
         sortAndPrint(200);
 	    
