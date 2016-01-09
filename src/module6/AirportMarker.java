@@ -1,11 +1,11 @@
 package module6;
 
-import java.util.List;
-
 import de.fhpotsdam.unfolding.data.Feature;
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.marker.SimpleLinesMarker;
 import processing.core.PGraphics;
+
+import java.util.List;
 
 /** 
  * A class to represent AirportMarkers on a world map.
@@ -24,7 +24,7 @@ public class AirportMarker extends CommonMarker {
 	
 	@Override
 	public void drawMarker(PGraphics pg, float x, float y) {
-		pg.fill(11);
+		pg.fill(150, 30, 30);
 		pg.ellipse(x, y, 5, 5);
 		
 		
