@@ -44,12 +44,17 @@ public class AirportMap extends PApplet {
 		// create markers from features
 		for(PointFeature feature : features) {
 			AirportMarker m = new AirportMarker(feature);
-	
-			m.setRadius(5);
-			airportList.add(m);
-			
-			// put airport in hashmap with OpenFlights unique id for key
-			airports.put(Integer.parseInt(feature.getId()), feature.getLocation());
+
+			String myCity = feature.getProperty("city").toString();
+
+			if(myCity.charAt(1) == 'L') {
+
+				m.setRadius(5);
+				airportList.add(m);
+
+				// put airport in hashmap with OpenFlights unique id for key
+				airports.put(Integer.parseInt(feature.getId()), feature.getLocation());
+			}
 		
 		}
 		
