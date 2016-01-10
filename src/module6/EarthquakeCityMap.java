@@ -144,7 +144,7 @@ public class EarthquakeCityMap extends PApplet {
 	}
 	
 	
-	// TODO: Add the method:
+
    private void sortAndPrint(int numToPrint)
    {
     EarthquakeMarker [] myArrayOfMarkers = new EarthquakeMarker[quakeMarkers.size()];

@@ -25,6 +25,8 @@ public class AirportMap extends PApplet {
 	UnfoldingMap map;
 	private List<Marker> airportList;
 	List<Marker> routeList;
+	private CommonMarker lastSelected;
+	private CommonMarker lastClicked;
 	
 	public void setup() {
 		// setting up PAppler
@@ -76,16 +78,16 @@ public class AirportMap extends PApplet {
 			
 			SimpleLinesMarker sl = new SimpleLinesMarker(route.getLocations(), route.getProperties());
 		
-			System.out.println(sl.getProperties());
+			//System.out.println(sl.getProperties());
 			
 			//UNCOMMENT IF YOU WANT TO SEE ALL ROUTES
-			//routeList.add(sl);
+			routeList.add(sl);
 		}
 		
 		
 		
 		//UNCOMMENT IF YOU WANT TO SEE ALL ROUTES
-		//map.addMarkers(routeList);
+		map.addMarkers(routeList);
 		
 		map.addMarkers(airportList);
 		
@@ -95,6 +97,51 @@ public class AirportMap extends PApplet {
 		background(0);
 		map.draw();
 		
+	}
+
+	/** The event handler for mouse clicks
+	 * it will display information about airport
+	 * and all the routes out of the airport
+	 */
+	@Override
+	public void mouseClicked()
+	{
+		if (lastClicked != null) {
+			unhideMarkers();
+			lastClicked = null;
+		}
+		else if (lastClicked == null)
+		{
+			checkAirportsForClick();
+		}
+	}
+
+	// Helper method that will check if an airport marker was clicked on
+	// and respond appropriately
+	private void checkAirportsForClick()
+	{
+		if (lastClicked != null) return;
+		// Loop over the earthquake markers to see if one of them is selected
+		for (Marker m : airportList) {
+			AirportMarker marker = (AirportMarker) m;
+			if (!marker.isHidden() && marker.isInside(map, mouseX, mouseY)) {
+				lastClicked = marker;
+				// Hide all the other earthquakes and hide
+				for (Marker mhide : airportList) {
+					if (mhide != lastClicked) {
+						mhide.setHidden(true);
+					}
+				}
+				return;
+			}
+		}
+	}
+
+	// loop over and unhide all markers
+	private void unhideMarkers() {
+		for(Marker marker : airportList) {
+			marker.setHidden(false);
+		}
 	}
 	
 
