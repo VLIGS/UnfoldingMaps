@@ -52,6 +52,7 @@ public class AirportMap extends PApplet {
 			if(myCity.charAt(1) == 'L') {
 
 				m.setRadius(5);
+				m.setId("" + Integer.parseInt(feature.getId()));
 				airportList.add(m);
 
 				// put airport in hashmap with OpenFlights unique id for key
@@ -165,6 +166,12 @@ public class AirportMap extends PApplet {
 				// Hide all the other earthquakes and hide
 				for (Marker mhide : airportList) {
 					if (mhide != lastClicked) {
+						mhide.setHidden(true);
+					}
+				}
+
+				for (Marker mhide : routeList) {
+					if(!mhide.getProperty("source").equals(marker.getId())){
 						mhide.setHidden(true);
 					}
 				}

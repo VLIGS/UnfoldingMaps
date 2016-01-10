@@ -39,16 +39,16 @@ public class AirportMarker extends CommonMarker {
 
 		pg.stroke(110);
 		pg.fill(255,255,255);
-		pg.rect(x, y + 15, pg.textWidth(title) +6, 50, 5);
+		pg.rect(x, y - 55, pg.textWidth(title) +6, 60, 5);
 
 		pg.textAlign(PConstants.LEFT, PConstants.TOP);
 		pg.fill(0);
-		pg.text(title, x + 3 , y +18);
+		pg.text(title, x + 3 , y -55);
 
 		pg.popStyle();
 	}
 	public String getInfo() {
-		return "Country : " + getProperty("country") + "\n" + "Altitude : " + getProperty("altitude") + "\n" + "City : " + getProperty("city") + "\n";
+		return "Country : " + getProperty("country") + "\n" + "Altitude : " + getProperty("altitude") + "\n" + "City : " + getProperty("city") + "\n" + "Name : " + getProperty("name") + "\n";
 
 	}
 	
