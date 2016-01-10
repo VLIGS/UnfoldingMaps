@@ -32,14 +32,14 @@ public class AirportMarker extends CommonMarker {
 	@Override
 	public void showTitle(PGraphics pg, float x, float y) {
 
-		String title = getTitle();
+		String title = getInfo();
 		pg.pushStyle();
 
 		pg.rectMode(PConstants.CORNER);
 
 		pg.stroke(110);
 		pg.fill(255,255,255);
-		pg.rect(x, y + 15, pg.textWidth(title) +6, 18, 5);
+		pg.rect(x, y + 15, pg.textWidth(title) +6, 50, 5);
 
 		pg.textAlign(PConstants.LEFT, PConstants.TOP);
 		pg.fill(0);
@@ -47,8 +47,8 @@ public class AirportMarker extends CommonMarker {
 
 		pg.popStyle();
 	}
-	public String getTitle() {
-		return (String) getProperty("title");
+	public String getInfo() {
+		return "Country : " + getProperty("country") + "\n" + "Altitude : " + getProperty("altitude") + "\n" + "City : " + getProperty("city") + "\n";
 
 	}
 	

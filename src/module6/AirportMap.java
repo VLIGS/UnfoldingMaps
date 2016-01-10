@@ -116,6 +116,41 @@ public class AirportMap extends PApplet {
 		}
 	}
 
+	/** Event handler that gets called automatically when the
+	 * mouse moves.
+	 */
+	@Override
+	public void mouseMoved()
+	{
+		// clear the last selection
+		if (lastSelected != null) {
+			lastSelected.setSelected(false);
+			lastSelected = null;
+
+		}
+		selectMarkerIfHover(airportList);
+		//loop();
+	}
+
+	// If there is a marker selected
+	private void selectMarkerIfHover(List<Marker> markers)
+	{
+		// Abort if there's already a marker selected
+		if (lastSelected != null) {
+			return;
+		}
+
+		for (Marker m : markers)
+		{
+			CommonMarker marker = (CommonMarker)m;
+			if (marker.isInside(map,  mouseX, mouseY)) {
+				lastSelected = marker;
+				marker.setSelected(true);
+				return;
+			}
+		}
+	}
+
 	// Helper method that will check if an airport marker was clicked on
 	// and respond appropriately
 	private void checkAirportsForClick()
@@ -126,6 +161,7 @@ public class AirportMap extends PApplet {
 			AirportMarker marker = (AirportMarker) m;
 			if (!marker.isHidden() && marker.isInside(map, mouseX, mouseY)) {
 				lastClicked = marker;
+				//marker.showTitle(map, mouseX, mouseY);
 				// Hide all the other earthquakes and hide
 				for (Marker mhide : airportList) {
 					if (mhide != lastClicked) {
